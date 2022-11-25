@@ -1,10 +1,10 @@
-#Makefile   CPP07   ex00
+#Makefile   CPP07   ex01
 
 SRCS		= main.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
-NAME		= whatever 
+NAME		= iter 
 
 CC			= c++-12 #c++-12
 
