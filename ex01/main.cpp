@@ -4,7 +4,7 @@
 #include "iter.hpp"
 
 template< typename T >
-void    print_value( T a ) {
+void    print_value( T const & a ) {
 
     std::cout << "The value is " << a << std::endl;
     return;
@@ -35,7 +35,7 @@ int	main( void ) {
 		tab3[3] = "01 du module";
 		tab3[4] = "CPP 07 template.";
 
-	iter<std::string>(tab3, 5, &print_value);
+	iter<std::string>(tab3, 5, print_value);
 	delete  [] tab3;
 
 	return 0;
