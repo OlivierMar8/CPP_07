@@ -4,19 +4,19 @@
 #include <string>
 
 template< typename T >
-void	iter( const T * ptrT, const int size, void(*f_ptr)(const T &x, int i))
+void	iter( T * ptrT, size_t size, void(*p_func)(T))
 {
-	for (int i = 0; i < size; i++ )
+	for (size_t i = 0; i < size; i++ )
 	{	
-		f_ptr( ptrT[i], i);
+		p_func( ptrT[i]);
 	}
 }
 
-
+/*
 template< typename T >
-void	print_value( T t ) {
+void	print_value( T const & a ) {
 
-	std::cout << "The value is " << t << std::endl;
+	std::cout << "The value is " << a << std::endl;
 	return;
 }
-
+*/

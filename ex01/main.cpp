@@ -4,21 +4,39 @@
 #include "iter.hpp"
 
 template< typename T >
-void    print_value( T to_print, int i ) {
+void    print_value( T a ) {
 
-    std::cout << "The value " << i << " is " << to_print << std::endl;
+    std::cout << "The value is " << a << std::endl;
     return;
 }
 
+
 int	main( void ) {
 
-	void(*f_ptr)(int, int) = &print_value;
 
 	int	*tab = new int[5];
 	for ( int i = 0; i < 5; i++ )
 		tab[i] = i;
 
-	std::cout << tab[6];
-	iter(tab, 9, f_ptr);
+	iter<int>(tab, 5, &print_value);
+	delete  [] tab;
+
+	float *tab2 = new float[5];
+	for ( int i = 0; i < 5; i++ )
+		tab2[i] = i * 1.25f;
+
+	iter<float>(tab2, 5, &print_value);
+	delete  [] tab2;
+
+	std::string *tab3 = new std::string[5];
+		tab3[0] = "Le debut";
+		tab3[1] = "du test";
+		tab3[2] = "de l'exercice";
+		tab3[3] = "01 du module";
+		tab3[4] = "CPP 07 template.";
+
+	iter<std::string>(tab3, 5, &print_value);
+	delete  [] tab3;
+
 	return 0;
 }

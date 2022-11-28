@@ -6,7 +6,7 @@
 /*   By: olmartin <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:35:35 by olmartin          #+#    #+#             */
-/*   Updated: 2022/11/25 16:04:46 by olmartin         ###   ########.fr       */
+/*   Updated: 2022/11/28 08:54:55 by olmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 template< typename U>
 void	print_value(U a, size_t i) {
 	std::cout << "test06: " << a << " at position " << i << std::endl;
-	
+	return;	
 }
 
 template< typename T>
@@ -26,6 +26,7 @@ void    iter( T * ptrT, size_t size, void(*p_func)(T, size_t))
     {
 		p_func(ptrT[i], i);
     }
+	return;
 }
 
 int main( void ) {
