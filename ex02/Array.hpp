@@ -4,6 +4,7 @@
 # define ARRAY_HPP
 
 #include <iostream>
+#include <string>
 
 template<typename T>
 class Array {
@@ -13,10 +14,10 @@ class Array {
 		Array<T>( void ) : _nb( 0 ), _array( NULL ) { }
 
 		Array<T>( unsigned int const n ):  _nb ( n ) {
-			if ( _nb < 0 )
+	/*		if ( _nb < 0 )
 				throw std::exception();
 			else
-				_array = new T[_nb];
+	*/			_array = new T[_nb];
 		}
 //ok
 		Array<T>( Array<T> const & src )  {
@@ -27,44 +28,41 @@ class Array {
 			if (_nb > 0)
 				delete [] _array;
 		}			
-
-		Array<T> &	operator=( Array const & rhs ) {
+//ok
+		Array<T> &	operator=( Array<T> const & rhs ) {
 			
 			if (this == &rhs)
 				return *this;
-			delete [] _array;
+			if (_nb > 0)
+				delete [] _array;
 			_nb = rhs.size();
 			_array = new T[_nb];
-			for (int j = 0; j < -_nb; j++)
-				_array[j] = rhs[j];
+			for (unsigned int i = 0; i < _nb; i++)
+				_array[i] = rhs[i];
 			return *this;
 		}			
-			
-		T & operator[]( size_t i ) {
-			if (i < 0 || i > _nb)
-				throw std::exception();
+//ok		
+		T & operator[]( int const i ) {
+			if (i > static_cast<int>(_nb) || i < 0)
+				throw std::out_of_range("Error: out of bounds index");
 			return _array[i];
 		}
 			
-		const T & operator[]( size_t i ) const {
-			if (i < 0 || i > _nb)
-				throw std::exception();
+		const T & operator[]( int const i ) const {
+			if (i > static_cast<int>(_nb) || i < 0)
+				throw std::out_of_range("Error: out of bounds index");
 			return _array[i];
 		}
 			
 
-		size_t			size( void ) const {
+		int			size( void ) const {
 						return _nb;
 		}
 
-	/*	T			getArrayElement( int i ) {
-						return (_array[i]);
-		}
-	*/		
 	private:
 
-		int 	_nb;
-		T *		_array;			
+		unsigned int 	_nb;
+		T *				_array;			
 
 };
 
