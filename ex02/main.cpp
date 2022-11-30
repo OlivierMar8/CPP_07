@@ -7,13 +7,15 @@
 typedef struct s_struct {
 	int	a;
 	std::string str;
+	s_struct & operator=( s_struct const & src) {
+		this->a = src.a;
+		this->str = src.str;
+		return *this;
+	}
 }	t_struct;
+
 	
 int	main( void ) {
-
-	int * a = new int() ;
-	std::cout << *a << std::endl;
-	delete a;
 
 	Array<float>   tab_float(12);
 	for (int i = 0; i < 12;i++)
@@ -21,8 +23,7 @@ int	main( void ) {
 		tab_float[i] = 3.1f * i;
 		std::cout << "tab_float[" << i << "] : " << tab_float[i] << std::endl;
 	}
-	Array<float>	tab2f;
-	tab2f = tab_float;
+	Array<float>	tab2f(tab_float);
 	tab_float[3] = 99.33f;
 	std::cout << "Value [3] from tab_float: " << tab_float[3] << " , from tab2f: " << tab2f[3] << std::endl;
 	
@@ -50,10 +51,6 @@ int	main( void ) {
 	tab_string[0] = struct_array[1].str;
 
 	std::cout << tab_string[0] << std::endl;
-
-	Array<t_struct>	test_array(struct_array);
-
-	std::cout << test_array[1].str << std::endl;
 
 	return 0;
 }
